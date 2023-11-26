@@ -9,6 +9,8 @@ const getPokemons = async (
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
   ).then((res) => res.json());
 
+  // throw new Error("Ha ocurrido un error");
+
   const pokemons = data.results.map((pokemon) => ({
     id: pokemon.url.split("/").at(-2)!,
     name: pokemon.name,
