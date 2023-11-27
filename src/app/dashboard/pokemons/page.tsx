@@ -1,22 +1,9 @@
-import { PokemonGrid, PokemonsResponse, SimplePokemon } from "@/pokemons";
-import Image from "next/image";
+import { PokemonGrid } from "@/pokemons";
+import { getPokemons } from "@/utils";
 
-const getPokemons = async (
-  limit = 20,
-  offset = 0
-): Promise<SimplePokemon[]> => {
-  const data: PokemonsResponse = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
-  ).then((res) => res.json());
-
-  // throw new Error("Ha ocurrido un error");
-
-  const pokemons = data.results.map((pokemon) => ({
-    id: pokemon.url.split("/").at(-2)!,
-    name: pokemon.name,
-  }));
-
-  return pokemons;
+export const metadata = {
+  title: "Pokemons list",
+  description: "List of the first 151 pokemons",
 };
 
 export default async function PokemonsPage() {
